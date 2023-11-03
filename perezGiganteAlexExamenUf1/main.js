@@ -50,5 +50,54 @@ coche.forEach((element ) => {
 });
 document.querySelector("#tarjetas").innerHTML = tarjetas
 }
-
 mostrarTarjetas()
+
+
+const botonComparar = document.querySelector("#comparar");
+botonComparar.addEventListener("click", compararCoches);
+
+function compararCoches(){
+    const coche1 = document.querySelector("#coche1");
+    const coche2 = document.querySelector("#coche2");
+    const nombre1=coche1.value
+    const nombre2=coche2.value
+    console.log(nombre1 , nombre2)
+
+    let tabla=`<table class="table table-bordered ">
+    <thead>
+    <tr>
+      <th>Imagen</th>
+      <th>Nombre</th>
+      <th>Motor</th>
+      <th>Potencia</th>
+    </tr>
+  </thead >
+  <tbody >`
+
+    coche.forEach((element ) => {
+        if(nombre1==element.nombre){
+            tabla += `
+            <tr>
+            <td><img width="250" src="${element.urlImagen}" alt="${element.nombre}"></td>
+            <td>${element.nombre}</td>
+            <td>${element.motor}</td>
+            <td>${element.potencia}</td>
+        `;
+        }
+    });
+    coche.forEach((element ) => {
+        if(nombre2==element.nombre){
+            tabla += `
+            <tr>
+            <td><img width="250" src="${element.urlImagen}" alt="${element.nombre}"></td>
+            <td>${element.nombre}</td>
+            <td>${element.motor}</td>
+            <td>${element.potencia}</td>
+        `;
+        }
+    });
+    tabla+=`</tbody>
+    </table>`
+    document.querySelector("#tablas").innerHTML= tabla
+
+}
