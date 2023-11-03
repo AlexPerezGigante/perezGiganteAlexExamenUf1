@@ -63,7 +63,8 @@ function compararCoches(){
     const nombre2=coche2.value
     console.log(nombre1 , nombre2)
 
-    let tabla=`<table class="table table-bordered ">
+    let tabla=`<h3>Tabla comparativa de dos coches</h3>
+    <table class="table table-bordered ">
     <thead>
     <tr>
       <th>Imagen</th>
@@ -99,5 +100,31 @@ function compararCoches(){
     tabla+=`</tbody>
     </table>`
     document.querySelector("#tablas").innerHTML= tabla
+}
 
+const botonBuscar = document.querySelector("#buscar");
+botonBuscar.addEventListener("click", buscarCoches);
+
+function buscarCoches(){
+    const inputCoche = document.querySelector("#inputBuscador");
+    const potencia=inputCoche.value
+
+    let lista=`<h3>Lista de coches con más potencia que ${potencia}</h3>
+    <ul>`
+
+    coche.forEach((element ) => {
+        if(potencia<element.potencia){
+            lista += `
+            <li>
+                <ul class="list-unstyled">
+                    <li>${element.nombre} </li>
+                    <li>${element.potencia} cv</li>
+                </ul>
+            </li>
+        `
+        }
+    })
+    lista+=`</ul>`
+
+    document.querySelector("#lista").innerHTML=lista
 }
